@@ -1,4 +1,4 @@
-//Introducing a new tag 
+//Introducing a new tag/ component
 //App.jsx eke call krna function ekedi dala ewana data tika function ekta gnne "props" kiyna parameter eken 
 export default function ProductCard(props) {
     
