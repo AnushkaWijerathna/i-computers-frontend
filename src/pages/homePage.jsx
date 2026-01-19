@@ -1,10 +1,20 @@
+import { Route, Routes } from "react-router-dom";
 import Header from "../components/header";
 
+//Admin, login, register URLs hara one ekk enne home page URL ekata
 export default function HomePage() {
     return(
-        <div className="w-full h-screen">
+        <div className="w-full h-full max-h-full overflow-y-scroll">
             <Header/>
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis inventore totam placeat dolores hic. Illo ipsa, quasi laborum, praesentium quaerat cumque quam maxime inventore aliquid provident amet asperiores, consequuntur animi!</h1>
+            <div className="w-full min-h-[calc(100%-100px)]">
+                <Routes>
+                    <Route path="/" element={<h1>Home Page</h1>} />
+                    <Route path="/products" element={<h1>Products Page</h1>} />
+                    <Route path="/about" element={<h1>About Us Page</h1>} />
+                    <Route path="/contact" element={<h1>Contact Us Page</h1>} />   
+                    <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+                </Routes>
+            </div>
         </div>
     )
 }

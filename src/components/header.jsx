@@ -1,9 +1,18 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
 
     return(
-        <header className="w-full h-25 bg-accent">
-            <img src="/logo.png"  className="w-25" alt="logo"/>
-            <h1>My Shop</h1>
+        <header className="w-full h-[100px] bg-accent flex">
+            <img src="/logo.png"  className="h-full" alt="logo"/>
+            {/*Contact Us wage ewa*/ }
+            <div className="w-full h-full flex text-primary justify-center items-center gap-2.5 text-xl">
+                <Link to="/">Home</Link>
+                <Link to="/products">Products</Link>
+                <Link to="/about">About Us</Link> 
+                <Link to="/contact">Contact Us</Link>
+                
+            </div>
         </header>
     )
 }

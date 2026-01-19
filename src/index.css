@@ -6,5 +6,19 @@ tailwindcss how to make variables --> https://tailwindcss.com/docs/theme*/
 @theme {
     --color-primary: #F7FAFF;
     --color-secondary: #111827;
-    --color-accent:  #2563EB;
+    --color-accent:  #27302b;
+}
+
+/* In your global CSS file, e.g., app.css */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent; /* Color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Rounded corners for the thumb */
 }
