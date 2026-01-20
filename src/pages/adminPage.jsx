@@ -9,7 +9,7 @@ import { MdOutlineReviews } from "react-icons/md";
 
 export default function AdminPage() {
    return(
-    <div className="w-full h-full max-h-full flex bg-accent">
+    <div className="w-full h-screen flex bg-accent">
 
       {/* Admin Page sidepanel; header eka, links tika*/}
       <div className="w-75 h-full bg-accent">
