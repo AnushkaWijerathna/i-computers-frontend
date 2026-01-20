@@ -6,6 +6,8 @@ import { FaClipboardList } from "react-icons/fa";
 import { BsBoxes } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
 import { MdOutlineReviews } from "react-icons/md";
+import AdminProductPage from "./admin/adminProductPage";
+import AdminAddProductPage from "./admin/adminAddProductPage";
 
 export default function AdminPage() {
    return(
@@ -18,8 +20,8 @@ export default function AdminPage() {
             <img src="/logo.png"  className="h-full" alt="logo"/>
             <h1>Admin</h1>
          </div>
-         
-         <div className="w-full h-[400px] text-white text-2xl flex flex-col gap-[10px]">
+
+         <div className="w-full h-[400px] text-white text-2xl flex flex-col gap-[10px] pl-[20px] pt-[30px]">
             
             <Link to="/admin" className="w-full flex h-[50px] gap-[10px]  items-center"> <FaClipboardList />Orders</Link>
             <Link to="/admin/products" className="w-full flex h-[50px] gap-[10px] items-center"><BsBoxes />Products</Link>
@@ -29,10 +31,11 @@ export default function AdminPage() {
 
       </div>
       {/* Admin Page main content area which is a dynamic page that changes with the URL..."calc(%-px)" calculates the pixel area that is wanted to manage by a "div"*/}
-      <div className="w-[calc(100%-300px)] h-full max-h-full border-[10px] rounded-3xl overflow-y-scroll border-accent text-2xl bg-primary">                         
+      <div className="w-[calc(100%-300px)] h-full max-h-full border-[10px] rounded-3xl overflow-y-scroll border-accent bg-primary">                         
          <Routes>
             <Route path="/" element={<h1>Orders</h1>} />
-            <Route path="/products" element={<h1>Products</h1>} />
+            <Route path="/products" element={<AdminProductPage />} />
+            <Route path="/add-product" element={<AdminAddProductPage />} />   
             <Route path="/users" element={<h1>Users</h1>} />
             <Route path="/reviews" element={<h1>Reviews</h1>} />
          </Routes>

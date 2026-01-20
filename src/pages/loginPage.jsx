@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
 
+    //state hooks hama input field ekkma one value eka store krnna
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");   
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function LoginPage() {
         console.log("Email:",email);
         console.log("Password:",password);    
 
-{/* Meken ganna data tika ynna one Url eka dila, ywnna one data tika denwa...DB eke user kenek store wela nm login succesful wenwa*/}
+        {/* Meken ganna data tika ynna one Url eka dila, ywnna one data tika denwa...DB eke user kenek store wela nm login succesful wenwa*/}
 
         if (!password || !email) {
             toast.error("Please Enter Valid Credentials");
@@ -28,6 +29,9 @@ export default function LoginPage() {
             });
 
             console.log( res);
+
+            //store token in local storage of the users browser
+            localStorage.setItem("token",res.data.token);
 
             if (res.data.role == "admin") {
 
@@ -68,8 +72,8 @@ export default function LoginPage() {
 
                     <h1 className="text-[40px] font-bold mb-[20px] text-golden text-shadow-white">Login</h1>
 
-{/* Login form eka*/}
-{/*...User karana hama detama ex; click, hover, type.. one deyk "event" kiyla kiynwa..."onChange" eken event eke info tika gnna puluwn ".target.value" prints events*/}
+                    {/* Login form eka*/}
+                    {/*...User karana hama detama ex; click, hover, type.. one deyk "event" kiyla kiynwa..."onChange" eken event eke info tika gnna puluwn ".target.value" prints events*/}
                     <input
                         onChange={
                             (e) =>{
