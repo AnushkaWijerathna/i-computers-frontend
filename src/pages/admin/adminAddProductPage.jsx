@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FcAddDatabase } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
+import UploadFile from "../../utils/mediaUpload";
 
 export default function AdminAddProductPage() {
 
@@ -12,7 +13,7 @@ export default function AdminAddProductPage() {
     const[description, setDescription] = useState("");
     const[price, setPrice] = useState("");
     const[labelledPrice, setLabelledPrice] = useState("");
-    const[images, setImages] = useState("");
+    const[files, setFiles] = useState([]);
     const[category, setCategory] = useState("");
     const[model, setModel] = useState("");
     const[brand, setBrand] = useState("");
@@ -31,6 +32,28 @@ export default function AdminAddProductPage() {
             return;
         }
 
+        console.log(files)
+
+        //files array eke thyena hama file ekktama add krnna kiyla promise hadagena, imagePromises array ekta promises okkoma danwa
+        const imagePromises = []
+
+        //picture ek upload krl URL ek dennm kiyla hadapu promise ek...forEach eken array eke thiyena hama file ektama promise ek denwa
+        for (let i = 0; i < files.length; i++) {
+
+            const promise = UploadFile(files[i])
+            imagePromises.push(promise)
+        }
+
+        //promises okkoma eka wara complete krla result eka "images" walta dnwa
+        const images = await Promise.all(imagePromises).catch(
+            (error) => {
+                toast.error("Error uploading images")
+                console.log("error ")
+                console.log(error)
+                return
+            })
+
+
         if (productID=="" || name=="" || description=="" || price=="" || category=="" || model=="" || brand=="" ) {
             toast.error("Please fill all the fields");
             return;
@@ -42,7 +65,6 @@ export default function AdminAddProductPage() {
             
             //Comma separated values walata array ekak hdnna
             const altNamesInArray = altNames.split(",")
-            const imagesInArray = images.split(",")
 
             //Post request eka --> "await axios.post(url, data, config)" , config kiynne userge token eka
             await axios.post(import.meta.env.VITE_BACKEND_URL + "/products/",{ 
@@ -53,7 +75,7 @@ export default function AdminAddProductPage() {
                 description : description,
                 price : price,
                 labelledPrice : labelledPrice,
-                images : imagesInArray,        
+                images : images,        
                 category : category,
                 model : model,
                 brand : brand,
@@ -135,7 +157,11 @@ export default function AdminAddProductPage() {
                     <div className="my-[10px] flex flex-col w-full">
                         <label className="p-1.5">Images</label>
                         <input 
-                            type="text" value={images} onChange={(e) => setImages (e.target.value)}  
+                            type="file"
+                            multiple={true} //Selecting multiple files
+                            onChange={(e) => 
+                                setFiles(e.target.files)
+                            }  
                             className="w-full h-[40px] mb-[20px] rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent border border-accent shadow-2xl px-[20px]"
                         />
                     </div>

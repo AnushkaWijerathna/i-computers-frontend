@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "../components/header";
+import TestPage from "./test";
 
 //Admin, login, register URLs hara one ekk enne home page URL ekata
 export default function HomePage() {
@@ -7,6 +8,7 @@ export default function HomePage() {
         <div className="w-full h-full max-h-full overflow-y-scroll">
             <Header/>
             <div className="w-full min-h-[calc(100%-100px)]">
+
                 <Routes>
                     <Route path="/" element={<h1>Home Page</h1>} />
                     <Route path="/products" element={<h1>Products Page</h1>} />

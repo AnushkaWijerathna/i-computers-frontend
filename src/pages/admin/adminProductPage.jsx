@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import ProductDeleteButton from "../../components/productDelete";
 
 export default function AdminProductPage() {
 
@@ -94,26 +95,9 @@ export default function AdminProductPage() {
                                             )}
                                         </td>
 
-                                        {/*Delete function also the useEffect function should be called once when using delete for proper UX*/}
                                         <td className="px-4 py-3-text-sm">
                                             <div className="inline-flex items-center gap-2 opacity-60">
-                                                <button className="w-[70px] bg-red-500 flex justify-center items-center text-white p-2 rounded-lg cursor-pointer hover:bg-red-800"
-                                                    onClick={
-                                                        () => {
-                                                            const token = localStorage.getItem("token")
-                                                            axios.delete(import.meta.env.VITE_BACKEND_URL + "/products/" + item.productID, {
-                                                                headers : {
-                                                                    Authorization : `Bearer ${token}`
-                                                                }
-                                                            }).then(
-                                                                () => {
-                                                                    toast.success("Product deleted successfully")
-                                                                    setLoaded(false)
-                                                                }
-                                                            )
-                                                        }
-                                                    }
-                                                >Delete</button>
+                                                <ProductDeleteButton productID={item.productID} reload={ () => {setLoaded(false)}}/>
                                             </div>
                                         </td>
                                     </tr>
