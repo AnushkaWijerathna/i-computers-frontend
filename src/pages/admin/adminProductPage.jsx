@@ -13,7 +13,7 @@ export default function AdminProductPage() {
     const[products,setProducts] = useState([]);
     const[loaded,setLoaded] = useState(false);
 
-    //methanadi page eka load weddi eka parak run wenwa backEnd eken data fetch kra "products[]" set kranwa, delete dunna gmn "loaded">false una,
+    //methanadi page eka load weddi eka parak run wenwa backEnd API eken data fetch krala "products[]" set kranwa, delete dunna gmn "loaded"-> false una,
     //apahu run karla API eken data fetch krala modified Products[] load krnnwa, remove deleted products
 
     useEffect( 
@@ -95,9 +95,18 @@ export default function AdminProductPage() {
                                             )}
                                         </td>
 
-                                        <td className="px-4 py-3-text-sm">
+                                        <td className="px-4 py-3-text-sm ">
                                             <div className="inline-flex items-center gap-2 opacity-60">
                                                 <ProductDeleteButton productID={item.productID} reload={ () => {setLoaded(false)}}/>
+                                            </div>
+
+                                            {/*Button ekk dannth puluwn, mn link ekk dala eka button ekk wdhta hadagtta...state={item} sends the relevant product data to the destination */}
+                                            <div className="inline-felx p-[5px] w-[70px] bg-accent flex justify-center items-center text-white rounded-lg cursor-pointer hover:bg-blue-700 mt-3 mb-3">
+                                                <Link to="/admin/update-product"
+                                                    state={item}>
+                                                        
+                                                    Edit
+                                                </Link>
                                             </div>
                                         </td>
                                     </tr>

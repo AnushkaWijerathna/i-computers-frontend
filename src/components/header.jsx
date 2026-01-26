@@ -6,7 +6,7 @@ export default function Header() {
         <header className="w-full h-[100px] bg-accent flex">
             <img src="/logo.png"  className="h-full" alt="logo"/>
             {/*Contact Us wage ewa*/ }
-            <div className="w-full h-full flex text-primary justify-center items-center gap-2.5 text-xl">
+            <div className="w-full h-full flex text-primary justify-center items-center gap-5 text-xl">
                 <Link to="/">Home</Link>
                 <Link to="/products">Products</Link>
                 <Link to="/about">About Us</Link> 

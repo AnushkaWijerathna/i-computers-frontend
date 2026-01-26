@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "../components/header";
 import TestPage from "./test";
+import ProductPage from "./productPage";
+import ProductOverview from "./productOverview";
 
 //Admin, login, register URLs hara one ekk enne home page URL ekata
 export default function HomePage() {
@@ -11,7 +13,8 @@ export default function HomePage() {
 
                 <Routes>
                     <Route path="/" element={<h1>Home Page</h1>} />
-                    <Route path="/products" element={<h1>Products Page</h1>} />
+                    <Route path="/products" element={<ProductPage/>} />
+                    <Route path="/overview/:productID" element={<ProductOverview/>} />
                     <Route path="/about" element={<h1>About Us Page</h1>} />
                     <Route path="/contact" element={<h1>Contact Us Page</h1>} />   
                     <Route path="*" element={<h1>404 - Page Not Found</h1>} />

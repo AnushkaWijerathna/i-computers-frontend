@@ -45,7 +45,7 @@ async function handleDelete() {
                 () => {
                     setMessage(true)
 
-            }} className="w-[70px] bg-red-500 flex justify-center items-center text-white p-2 rounded-lg cursor-pointer hover:bg-red-800">    
+            }} className="w-[70px] bg-red-500 flex justify-center items-center text-white p-2 rounded-lg cursor-pointer hover:bg-red-800 mt-1.5">    
                 Delete
             </button>
 
