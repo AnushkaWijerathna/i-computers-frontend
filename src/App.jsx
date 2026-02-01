@@ -11,7 +11,7 @@ import TestPage from './pages/test'
 //Meka thama web site eka...main eke call krnwa
 function App() {
   return(
-    //enables routing..."Routes" is a dynamic component, enable routing (Athule thiyna ewa isthira na, path eka anuwa change wenwa, *--> "admin/ "mnwa thbbth admin 
+    //enables routing..."Routes" is a dynamic component, enable routing (Athule thiyna ewa isthira na, path eka anuwa change wenwa, * --> "admin/ "mnwa thbbth admin 
     // page eka athulema ee pages load wenna, Toaster-->popup messages display krnna)
      
     <BrowserRouter>

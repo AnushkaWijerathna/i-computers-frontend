@@ -30,6 +30,11 @@ export default function LoginPage() {
 
             console.log( res);
 
+            if (!res.data.token) {
+                toast.error("Login Failed");
+                return;
+            }
+
             //store token in local storage of the users browser
             localStorage.setItem("token",res.data.token);
 
@@ -55,22 +60,21 @@ export default function LoginPage() {
     }
 
     return(
-        <div className="w-full h-screen bg-[url('/bg.jpg')] bg-center bg-cover bg-no-repeat flex">
-
+        <div className="w-full h-screen bg-[url('/bg.jpg')] bg-center bg-cover bg-no-repeat flex relative after:absolute after:inset-0 after:bg-black/20 after:pointer-events-none">
             {/* Left side, "object-cover" image thibba whdta thiyenwa wens wen na*/}
-            <div className="w-[50%] h-full flex flex-col p-[50px] justify-center items-center">
+            <div className="w-[50%] h-full flex flex-col p-[60px] justify-center items-center relative z-10">
 
-                <img src="/logo.png" alt="logo" className="w-[200px] h-[200px] object-cover" />
-                <h1 className="text-[50px] text-golden text-shadow-2xs text-center font-bold ">Plug In Power Up Play Hard</h1>
-                <p className="text-[30px] text-white text-xl italic text-shadow-2xs">Welcome to our store</p>
+                <img src="/logo.png" alt="logo" className="w-[200px] h-[200px] object-cover drop-shadow-[0_0_25px_rgba(255,215,0,0.6)]" />
+               <h1 className="text-[48px] font-extrabold text-golden text-center tracking-wide drop-shadow-lg">Plug In Power Up Play Hard</h1>
+                <p className="text-xl text-white/80 italic mt-2 tracking-wide">Welcome to our store</p>
             </div>
 
             {/* Right side, "backdrop-blur"--> glass look ekk */}
             <div className="w-[50%] h-full flex justify-center items-center">
 
-                <div className="w-[450px] h-[600px] backdrop-blur-lg shadow-2xl rounded-2xl flex flex-col justify-center items-center">
+                <div className="w-[450px] h-[600px] bg-white/10 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-3xl flex flex-col justify-center items-center border border-white/20">
 
-                    <h1 className="text-[40px] font-bold mb-[20px] text-golden text-shadow-white">Login</h1>
+                    <h1 className="text-[42px] font-extrabold mb-6 text-golden tracking-wide drop-shadow-md">Login</h1>
 
                     {/* Login form eka*/}
                     {/*...User karana hama detama ex; click, hover, type.. one deyk "event" kiyla kiynwa..."onChange" eken event eke info tika gnna puluwn ".target.value" prints events*/}
@@ -81,7 +85,7 @@ export default function LoginPage() {
                             }    
                         } 
                         type="email" placeholder="Enter your Email" 
-                        className="w-[80%] h-[50px] mb-[20px] rounded-lg border-[2px] border-golden pl-[10px] text-primary text-lg outline-none focus:border-accent transition-all"
+                       className="w-[80%] h-[52px] mb-5 rounded-xl bg-white/90 border border-transparent pl-4 text-black text-lg outline-none focus:ring-2 focus:ring-golden transition-all shadow-sm"
                     />
 
                     <input 
@@ -91,25 +95,25 @@ export default function LoginPage() {
                             }    
                         } 
                         type="password" placeholder="Password" 
-                        className="w-[80%] h-[50px] mb-[20px] rounded-lg border-[2px] border-golden pl-[10px] text-primary text-lg outline-none focus:border-accent transition-all"
+                        className="w-[80%] h-[52px] mb-6 rounded-xl bg-white/90 border border-transparent pl-4 text-black text-lg outline-none focus:ring-2 focus:ring-golden transition-all shadow-sm"
                     />
 
                     <button 
                         onClick={login}
-                        className="w-[80%] h-[50px] bg-golden text-white text-xl font-bold rounded-lg hover:bg-accent transition-all mb-[20px]">
+                        className="w-[80%] h-[52px] bg-gradient-to-r from-golden to-yellow-400 text-black text-xl font-bold rounded-xl hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(255,215,0,0.6)] transition-all duration-300 mb-6 active:scale-95">
                         Login
                     </button>
 
-                    <p className="text-white mb-[10px] mt-[20px] ">           
+                    <p className="text-white/80 mb-2 mt-4">            
                         Don't have an account? 
-                        <span className="text-golden font-bold cursor-pointer">
+                        <span className="text-golden font-semibold hover:underline cursor-pointer">
                             <Link to="/register">Register</Link>
                         </span>
                     </p>
 
-                    <p className="text-white w-full text-center">
+                    <p className="text-white/80 mb-2 mt-4">
                         Forgot Password? 
-                        <span className="text-golden font-bold cursor-pointer">
+                        <span className="text-golden font-semibold hover:underline cursor-pointer">
                             <Link to="/forgot-password">Reset Password</Link>
                         </span>
                     </p> 
