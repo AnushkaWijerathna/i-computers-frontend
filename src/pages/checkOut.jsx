@@ -1,4 +1,6 @@
+import axios from "axios"
 import { useState } from "react"
+import toast from "react-hot-toast"
 import { BsChevronUp } from "react-icons/bs"
 import { useLocation, useNavigate } from "react-router-dom"
 
@@ -10,6 +12,9 @@ export default function CheckOutPage() {
     const location = useLocation()
     const navigate = useNavigate()
 
+    const [name, setName] = useState("")
+    const [address,setAddress] = useState("")
+    const [phone,setPhone] = useState("")
     const [cart, setCart] = useState(location.state)
 
 
@@ -28,6 +33,42 @@ export default function CheckOutPage() {
         
             return total.toFixed(2);
         
+    }
+
+    async function submitOrder() {
+        const token = localStorage.getItem("token")
+
+        if (token == null) {
+            toast.error("Login before placing an order")
+            navigate("/login")
+            return;
+        }
+
+        const orderItems = []
+
+        cart.forEach((item) => {
+            orderItems.push({
+                productID: item.productID, 
+                quantity: item.quantity
+            })
+        })
+
+        axios.post(import.meta.env.VITE_BACKEND_URL+"/orders" ,{
+            
+            name : name,
+            address: address,
+            phone:phone,
+            items: orderItems
+        },{
+            headers:{
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(()=>{
+            toast.success("Order Placed Succesfully")
+            navigate("/")
+        }).catch(()=>{
+            toast.error("error placing order")
+        })
     }
 
     return(
@@ -134,10 +175,64 @@ export default function CheckOutPage() {
                     }
                 )
             }
+
+            <div className="w-full md:w-[50%] my-3 flex flex-col gap-5
+                bg-white rounded-2xl shadow-lg border border-gray-100
+                p-6">
+
+                {/* Name */}
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium text-gray-600">
+                        Name
+                    </label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className=" w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm
+                                    focus:outline-none focus:ring-2 focus:ring-accent/60 focus:border-accent hover:border-gray-400 transition-all duration-200"
+                    />
+                </div>
+
+                {/* Address */}
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium text-gray-600">
+                        Address
+                    </label>
+                    <textarea
+                        type="text"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        className=" w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm
+                                    focus:outline-none focus:ring-2 focus:ring-accent/60 focus:border-accent hover:border-gray-400 transition-all duration-200"
+                    />
+                </div>
+
+                {/* Phone */}
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium text-gray-600">
+                        Phone
+                    </label>
+                    <input
+                        type="text"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className=" w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm
+                                    focus:outline-none focus:ring-2 focus:ring-accent/60 focus:border-accent hover:border-gray-400 transition-all duration-200"
+                    />
+                </div>
+
+            </div>
+
+
            <div className="w-full md:w-[50%] h-[150px] my-2 flex flex-col md:flex-row items-center justify-between
                 bg-white rounded-2xl shadow-lg border border-gray-100 p-4 gap-4">
 
-                <button 
+                <button onClick={
+                    () => {
+                        submitOrder()
+                    }
+                }
                     className="px-6 py-3 rounded-xl bg-white text-accent border-2 font-semibold 
                     hover:bg-emerald-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">
                         Order Now

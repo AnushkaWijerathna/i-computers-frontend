@@ -9,6 +9,7 @@ import { MdOutlineReviews } from "react-icons/md";
 import AdminProductPage from "./admin/adminProductPage";
 import AdminAddProductPage from "./admin/adminAddProductPage";
 import AdminUpdateProductPage from "./admin/adminUpdateProductPage";
+import AdminOrdersPage from "./admin/adminOrdersPage";
 
 export default function AdminPage() {
    return(
@@ -34,7 +35,7 @@ export default function AdminPage() {
       {/* Admin Page main content area which is a dynamic page that changes with the URL..."calc(%-px)" calculates the pixel area that is wanted to manage by a "div"*/}
       <div className="w-[calc(100%-300px)] h-full max-h-full border-[10px] rounded-3xl overflow-y-scroll border-accent bg-primary">                         
          <Routes>
-            <Route path="/" element={<h1>Orders</h1>} />
+            <Route path="/" element={<AdminOrdersPage/>} />
             <Route path="/products" element={<AdminProductPage />} />
             <Route path="/add-product" element={<AdminAddProductPage />} />   
             <Route path="/update-product" element={<AdminUpdateProductPage />} />   

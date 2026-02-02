@@ -38,6 +38,11 @@ export default function LoginPage() {
             //store token in local storage of the users browser
             localStorage.setItem("token",res.data.token);
 
+            //alert message
+            if (res.data.token) {
+               toast.success("Login Successful");
+            }
+
             if (res.data.role == "admin") {
 
                 navigate("/admin");
@@ -45,11 +50,6 @@ export default function LoginPage() {
             } 
             else if (res.data.role == "user") {
                 navigate("/");
-            }
-
-            //alert message
-            if (res.data.success) {
-               toast.success("Login Successful");
             }
            
         } catch (error) {

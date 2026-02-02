@@ -31,7 +31,7 @@ export default function CartPage() {
                                     />
                                 </div>
 
-                                {/* Product Details */}
+                                {/* Product Details of the cart */}
                                 <div className="flex flex-col justify-center gap-2 pr-4">
                                     {/* Product name with instant hover tooltip */}
                                     <div className="relative group w-fit max-w-full">
@@ -51,56 +51,57 @@ export default function CartPage() {
                                                 {item.name}
                                             </div>
                                         )}
-                                </div>
+                                    </div>
 
-                                {/* Original price (only if discounted) */}
-                                {item.labelledPrice > item.price && (
-                                    <h2 className="text-[14px] text-gray-400 line-through">
-                                        LKR {item.labelledPrice.toFixed(2)}
+                                    {/* Original price (only if discounted) */}
+                                    {item.labelledPrice > item.price && (
+                                        <h2 className="text-[14px] text-gray-400 line-through">
+                                            LKR {item.labelledPrice.toFixed(2)}
+                                        </h2>
+                                    )}
+
+                                    {/* Current price */}
+                                    <h2 className="text-[20px] md:text-[22px] font-bold
+                                                text-emerald-600 tracking-tight">
+                                        LKR {item.price.toFixed(2)}
                                     </h2>
-                                )}
 
-                                {/* Current price */}
-                                <h2 className="text-[20px] md:text-[22px] font-bold
-                                            text-emerald-600 tracking-tight">
-                                    LKR {item.price.toFixed(2)}
-                                </h2>
+                                    {/* ProductID */}
+                                    <p className="text-[14px] text-gray-500">
+                                        ProductID:
+                                        <span className="ml-1 font-semibold text-gray-800">
+                                            {item.productID}
+                                        </span></p>
+                                    </div>
 
-                                {/* Quantity */}
-                                <p className="text-[14px] text-gray-500">
-                                    ProductID:
-                                    <span className="ml-1 font-semibold text-gray-800">
-                                        {item.productID}
-                                    </span></p>
-                                </div>
-
-                                <div className="h-full flex flex-row items-center gap-4">
-                                    <div className="h-full flex flex-col justify-center items-center">
-                                        <BsChevronUp 
-                                            onClick={
-                                                () => {
-                                                    addToCart(item, 1);
-                                                    const newCart = getCart();
-                                                    setCart(newCart);
+                                    {/* Counter for the quantity */}
+                                    <div className="h-full flex flex-row items-center gap-4">
+                                        <div className="h-full flex flex-col justify-center items-center">
+                                            <BsChevronUp 
+                                                onClick={
+                                                    () => {
+                                                        addToCart(item, 1);
+                                                        const newCart = getCart();
+                                                        setCart(newCart);
+                                                    }
                                                 }
-                                            }
-                                            className="text-2xl cursor-pointer hover:text-accent transition"/>
-                                            <span className="text-lg">{item.quantity}</span>
-                                        <BsChevronUp 
-                                             onClick={
-                                                () => {
-                                                    addToCart(item, -1);
-                                                    const newCart = getCart();
-                                                    setCart(newCart);
+                                                className="text-2xl cursor-pointer hover:text-accent transition"/>
+                                                <span className="text-lg">{item.quantity}</span>
+                                            <BsChevronUp 
+                                                onClick={
+                                                    () => {
+                                                        addToCart(item, -1);
+                                                        const newCart = getCart();
+                                                        setCart(newCart);
+                                                    }
                                                 }
-                                            }
-                                            className="rotate-180 text-2xl cursor-pointer hover:text-accent transition"/>
-                                    </div>    
-                                </div>
+                                                className="rotate-180 text-2xl cursor-pointer hover:text-accent transition"/>
+                                        </div>    
+                                    </div>
 
-                                <div>
-                                    <span className="pr-4 text-lg font-semibold ">LKR: {(item.price*item.quantity).toFixed(2)}</span>
-                                </div>
+                                    <div>
+                                        <span className="pr-4 text-lg font-semibold ">LKR: {(item.price*item.quantity).toFixed(2)}</span>
+                                    </div>
                             </div>                          
                         );
                     }

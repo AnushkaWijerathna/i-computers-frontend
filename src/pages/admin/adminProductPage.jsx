@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import ProductDeleteButton from "../../components/productDelete";
@@ -69,7 +68,7 @@ export default function AdminProductPage() {
                                 return(
                                     <tr key={index} className="hover:bg-gray-50 transition-colors">
                                         <td className="px-4 py-3">
-                                            <img src={item.images[0]} className="w-12 h-12 rounded-md object-cover border border-gray-100 shadow-sm" /> 
+                                            <img src={item.images[0]} className="w-12 h-12 rounded-md object-contain border border-gray-100 shadow-sm" /> 
                                         </td>
                                         <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-[var(--color-secondary)]">{item.productID}</td>
                                         <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-700">{item.name}</td>

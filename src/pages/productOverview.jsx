@@ -107,6 +107,10 @@ export default function ProductOverview() {
                                     onClick={
                                         () => {
                                             const result = addToCart(product,1)
+
+                                             if (result?.success) {
+                                                toast.success("Added to cart")
+                                            } 
                                             console.log(getCart())
                                         }
                                     }
