@@ -6,7 +6,7 @@ tailwindcss how to make variables --> https://tailwindcss.com/docs/theme*/
 @theme {
     --color-primary: #F7FAFF;
     --color-secondary: #111827;
-    --color-accent:  #27302b;
+    --color-accent:  #111827;
     --color-golden:  #e29816;
 }
 

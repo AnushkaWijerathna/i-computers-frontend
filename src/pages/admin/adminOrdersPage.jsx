@@ -1,6 +1,7 @@
 //adminProductPage ekama use krnna products wenuwat orders danna
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ViewOrderInfo from "../../components/viewOrderInfo";
 
 export default function AdminOrdersPage() {
 
@@ -95,6 +96,9 @@ export default function AdminOrdersPage() {
 
                                         <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-[var(--color-secondary)]">
                                             LKR: {order.total.toFixed(2)}
+                                        </td>
+                                        <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-[var(--color-secondary)]">
+                                           <ViewOrderInfo order={order}/>
                                         </td>
                                     </tr>
                                 )                  
