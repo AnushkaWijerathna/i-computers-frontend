@@ -13,7 +13,7 @@ export default function Header() {
         onClick={() => {
           setSideBarOpen(true);
         }}
-        className="rotate-180 text-white text-4xl my-auto lg:visible"
+        className="rotate-180 text-white text-4xl my-auto lg:hidden"
       />
       {/* Logo with better sizing & alignment */}
       <img
@@ -58,8 +58,8 @@ export default function Header() {
         <BiShoppingBag />
       </Link>
       {sidebarOpen && (
-        <div className="fixed inset-0 bg-black/50 z-[9999] lg:hidden">
-          <div className="fixed top-0 left-0 w-[300px] h-screen border-white border-2 shadow-2xl z-[10000]">
+        <div className="fixed inset-0 bg-black/50 z-9999 lg:hidden">
+          <div className="fixed top-0 left-0 w-[300px] h-screen border-white border-2 shadow-2xl z-10000">
             {/* SLIDING PANEL */}
             <div className="absolute inset-0 bg-white transform translate-x-0 transition-transform duration-300 flex flex-col">
               {/* HEADER */}

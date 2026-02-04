@@ -81,25 +81,26 @@ export default function CheckOutPage() {
                         
                             <div
                                 key={item.productID}
-                                className="w-[50%] h-[200px] my-3 flex items-center gap-6
+                                className="w-full lg:w-[55%] my-3
+                                        flex flex-col lg:flex-row items-center lg:items-center gap-4 lg:gap-6
                                         bg-white rounded-2xl border border-gray-300
-                                        shadow-lg hover:shadow-2xl transition-shadow duration-300 justify-between"
+                                        shadow-lg hover:shadow-2xl transition-all duration-300 px-3 py-4 lg:p-4 justify-between"
                                 >
                                 {/* Product Image */}
-                                <div className="h-full aspect-square flex items-center justify-center p-3">
+                                <div className="w-full lg:w-[120px] flex items-center justify-center p-3">
                                     <img
                                         src={item.image}
-                                        className="h-full w-full object-contain rounded-xl
+                                        className="h-[100px] lg:h-[140px] w-auto object-contain rounded-xl
                                                 transition-transform duration-300 hover:scale-105"
                                     />
                                 </div>
 
                                 {/* Product Details */}
-                                <div className="flex flex-col justify-center gap-2 pr-4">
+                                <div className="flex flex-col justify-center gap-2 pr-4 w-full lg:w-auto text-center lg:text-left">
                                     {/* Product name with instant hover tooltip */}
-                                    <div className="relative group w-fit max-w-full">
+                                    <div className="relative group w-full max-w-full">
                                         <h1 className="text-[16px] md:text-[20px] font-semibold
-                                                    text-gray-900 leading-snug cursor-pointer">
+                                                    text-gray-900 leading-snug cursor-pointer truncate">
                                             {item.name.length > 15
                                                 ? item.name.slice(0, 15) + "...."
                                                 : item.name}
@@ -107,7 +108,7 @@ export default function CheckOutPage() {
 
                                         {/* Tooltip showing full name instantly on hover */}
                                         {item.name.length > 15 && (
-                                            <div className="absolute left-0 top-full mt-1 z-50
+                                            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 z-50
                                                             hidden group-hover:block
                                                             max-w-xs rounded-lg bg-gray-900
                                                             px-3 py-1.5 text-sm text-white shadow-lg">
@@ -118,7 +119,7 @@ export default function CheckOutPage() {
 
                                 {/* Original price (only if discounted) */}
                                 {item.labelledPrice > item.price && (
-                                    <h2 className="text-[14px] text-gray-400 line-through">
+                                    <h2 className="text-[14px] text-gray-400 line-through mt-1">
                                         LKR {item.labelledPrice.toFixed(2)}
                                     </h2>
                                 )}
@@ -129,7 +130,7 @@ export default function CheckOutPage() {
                                     LKR {item.price.toFixed(2)}
                                 </h2>
 
-                                {/* Quantity */}
+                                {/* ProductID */}
                                 <p className="text-[14px] text-gray-500">
                                     ProductID:
                                     <span className="ml-1 font-semibold text-gray-800">
@@ -137,8 +138,8 @@ export default function CheckOutPage() {
                                     </span></p>
                                 </div>
 
-                                <div className="h-full flex flex-row items-center gap-4">
-                                    <div className="h-full flex flex-col justify-center items-center">
+                                <div className="w-full lg:w-auto flex items-center justify-center lg:justify-start mt-3 lg:mt-0">
+                                    <div className="flex items-center gap-4 bg-white rounded-xl px-4 py-2 shadow-md">
                                         <BsChevronUp 
                                             onClick={
                                                 () => {
@@ -167,7 +168,7 @@ export default function CheckOutPage() {
                                     </div>    
                                 </div>
 
-                                <div>
+                                <div className="mt-3 lg:mt-0">
                                     <span className="pr-4 text-lg font-semibold ">LKR: {(item.price*item.quantity).toFixed(2)}</span>
                                 </div>
                             </div>                          
@@ -176,7 +177,7 @@ export default function CheckOutPage() {
                 )
             }
 
-            <div className="w-full md:w-[50%] my-3 flex flex-col gap-5
+            <div className="w-full md:w-[55%] my-3 flex flex-col gap-5
                 bg-white rounded-2xl shadow-lg border border-gray-100
                 p-6">
 
@@ -225,16 +226,16 @@ export default function CheckOutPage() {
             </div>
 
 
-           <div className="w-full md:w-[50%] h-[150px] my-2 flex flex-col md:flex-row items-center justify-between
-                bg-white rounded-2xl shadow-lg border border-gray-100 p-4 gap-4">
+           <div className="w-full md:w-[55%] h-auto my-2 flex flex-col md:flex-col items-center 
+                bg-primary p-4 gap-4">
 
-                <button onClick={
+                <button onClick={ // unchanged logic
                     () => {
                         submitOrder()
                     }
                 }
                     className="px-6 py-3 rounded-xl bg-white text-accent border-2 font-semibold 
-                    hover:bg-emerald-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">
+                    hover:bg-emerald-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg w-full md:w-[150px]">
                         Order Now
                 </button>
 

@@ -41,7 +41,7 @@ export default function AdminProductPage() {
                 
                 {/*Loaded nm wtrak table eka display krnna else (":") loading icon eka display krnna */}
                 {loaded ?   
-                    <table className="min-w-full divide-y divide-gray-200">
+                    <table className="min-w-full divide-y divide-gray-200 overflow-y-scroll">
                         <thead className="bg-[var(--color-accent)]">
                             <tr>
                                 <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-white">Images</th>

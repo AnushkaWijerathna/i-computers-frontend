@@ -10,7 +10,7 @@ export default function ProductCard(props) {
     
     return (
         //loku kotuwak hadannwa...eka athule podi kotu hadagena item data danwa...images 2k pennanna hadanne hover krddi
-        <div className="w-[300px] h-[400px] m-[30px] cursor-pointer relative 
+        <Link to={"/overview/" + product.productID} className="w-[300px] h-[400px] m-[30px] cursor-pointer relative 
             bg-white rounded-2xl shadow-md 
             hover:shadow-2xl hover:-translate-y-2 
             transition-all duration-300 ease-out 
@@ -49,11 +49,15 @@ export default function ProductCard(props) {
             </div>
 
             <div className="w-full h-[150px] bottom-0 absolute button opacity-0 bg-white flex flex-row gap-4 justify-center transition-opacity duration-300">
-                <Link to={"/overview/" + product.productID} className="px-3 h-[50px] py-2.5 border-2 border-accent text-black font-semibold rounded-lg hover:bg-accent hover:text-white transition-colors duration-200 mt-[30px]">
+               <button
+                    type="button"
+                    className="px-3 h-[50px] py-2.5 border-2 border-accent text-black font-semibold rounded-lg hover:bg-accent hover:text-white transition-colors duration-200 mt-[30px]"
+                >
                     View Details
-                </Link>
+                </button>
+
             </div>
-        </div>
+        </Link>
     )
 }
 

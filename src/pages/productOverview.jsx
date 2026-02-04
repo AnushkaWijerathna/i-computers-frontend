@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import ImageSlider from "../components/imageSlider";
@@ -53,16 +53,18 @@ export default function ProductOverview() {
             }
             {
                 status == "success" && 
-               <div className="w-full h-[calc(100vh-100px)] flex">
+               <div className="w-full min-h-[calc(100vh-100px)] flex flex-col lg:flex-row ">
                     
                     {/*Image  */}
-                    <div className="w-1/2 h-full bg-white flex items-center justify-center">
-                        <ImageSlider images={product.images}/>
+                    <div className="w-full lg:w-1/2 h-auto lg:h-[calc(100vh-100px)] bg-white flex items-center justify-center">
+                        <div className="w-full lg:w-[90%] px-4 py-6 lg:p-0">
+                            <ImageSlider images={product.images}/>
+                        </div>
                     </div>
 
                     {/*Details */}
-                    <div className="w-1/2 h-full bg-white flex justify-center items-center overflow-y-scroll">
-                        <div className="w-[85%] max-h-[90%] bg-gray-50 rounded-2xl shadow-xl p-8 flex flex-col gap-6">
+                    <div className="w-full lg:w-1/2 h-auto lg:h-[calc(100vh-100px)] bg-white flex justify-center items-start lg:items-center overflow-auto">
+                        <div className="w-full lg:w-[85%] max-h-[90%] bg-gray-50 rounded-2xl shadow-xl p-6 lg:p-8 flex flex-col gap-6">
                             
                             {/* Product Header */}
                             <div className="mb-4">
@@ -82,7 +84,7 @@ export default function ProductOverview() {
                             </div>  
 
                             {/* Description */}
-                            <div className="flex-1 overflow-y-auto pr-2 mb-6">
+                            <div className="flex-1 overflow-auto pr-2 mb-6">
                                 <p className="text-gray-700 leading-relaxed text-base">
                                     {product.description}
                                 </p>
@@ -101,7 +103,7 @@ export default function ProductOverview() {
                                 </h2>
                             </div>     
 
-                            <div className="flex gap-4">
+                            <div className="flex flex-col sm:flex-row gap-4">
                                 {/* Add to Cart */}
                                 <button
                                     onClick={
@@ -114,7 +116,7 @@ export default function ProductOverview() {
                                             console.log(getCart())
                                         }
                                     }
-                                    className="flex w-[150px] h-[52px] rounded-xl border-2 border-accent text-accent font-semibold text-lg
+                                    className="flex w-full sm:w-[150px] h-[52px] rounded-xl border-2 border-accent text-accent font-semibold text-lg
                                         hover:bg-accent hover:text-white transition-all duration-300 active:scale-95 items-center justify-center">
                                          Add to Cart
                                 </button>
@@ -122,7 +124,7 @@ export default function ProductOverview() {
 
                                 {/* Buy Now */}
                                 <button onClick={
-                                        ()=>{
+                                        ()=>{ 
                                             navigate("/checkOut",{state:[
                                                 {
                                                     productID:product.productID,
@@ -135,7 +137,7 @@ export default function ProductOverview() {
                                             ]})
                                         }
                                     }
-                                    className="flex w-[150px] h-[52px] rounded-xl bg-accent text-white font-bold text-lg
+                                    className="flex w-full sm:w-[150px] h-[52px] rounded-xl bg-accent text-white font-bold text-lg
                                     hover:text-black hover:bg-white border-2 border-accent transition-all duration-300 active:scale-95 items-center justify-center">
                                          Buy Now
                                 </button>
@@ -150,4 +152,4 @@ export default function ProductOverview() {
             }
        </>
     )
-} 
+}

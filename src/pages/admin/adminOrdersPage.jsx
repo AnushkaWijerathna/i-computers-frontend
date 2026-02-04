@@ -34,12 +34,12 @@ export default function AdminOrdersPage() {
     ,[loaded]);
 
     return(
-        <div className="w-full max-h-full flex justify-center p-10 relative bg-[var(--color-primary)]">
-            <div className="w-full max-w-[1300px] bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                <div className="w-full overflow-x-auto">
+        <div className=" w-full h-screen flex justify-center p-10 relative bg-[var(--color-primary)] overflow-hidden">
+            <div className=" w-full max-w-[1300px] bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full">
+                <div className="w-full overflow-x-auto overflow-y-auto flex-1">
                 
                 {loaded ?   
-                    <table className="min-w-full divide-y divide-gray-200">
+                    <table className="min-w-full divide-y divide-gray-200 ">
                         <thead className="bg-[var(--color-accent)]">
                             <tr>
                                 <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-white">

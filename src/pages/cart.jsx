@@ -6,135 +6,146 @@ import { Link } from "react-router-dom"
 export default function CartPage() {
     
     const [cart, setCart] = useState(getCart())
-    console.log("CART STATE:", cart, cart.length)
 
     return(
         <div className="w-full flex flex-col items-center p-2.5 cursor-auto">
             {
-                cart.map(
-                    (item) => {
+                cart.map((item,index) => (
+                    <div
+                        key={index}
+                        className="bg-primary/70 w-full lg:w-[55%] my-3
+                                   flex flex-col lg:flex-row
+                                   items-center lg:items-center
+                                   gap-4 lg:gap-8
+                                   rounded-2xl border border-gray-300
+                                   shadow-lg hover:shadow-accent/70 transition-all duration-300
+                                   px-3 py-4 lg:p-5"
+                    >
 
-                        return (
-                        
-                            <div
-                                key={item.productID}
-                                className="w-[50%] h-[200px] my-3 flex items-center gap-6
-                                        bg-white rounded-2xl border border-gray-300
-                                        shadow-lg hover:shadow-2xl transition-shadow duration-300 justify-between"
-                                >
-                                {/* Product Image */}
-                                <div className="h-full aspect-square flex items-center justify-center p-3">
-                                    <img
-                                        src={item.image}
-                                        className="h-full w-full object-contain rounded-xl
-                                                transition-transform duration-300 hover:scale-105"
-                                    />
-                                </div>
+                        {/* mobile title */}
+                        <h1 className="w-full text-xl font-semibold text-accent lg:hidden text-center">
+                            {item.name}
+                        </h1>
 
-                                {/* Product Details of the cart */}
-                                <div className="flex flex-col justify-center gap-2 pr-4">
-                                    {/* Product name with instant hover tooltip */}
-                                    <div className="relative group w-fit max-w-full">
-                                        <h1 className="text-[16px] md:text-[20px] font-semibold
-                                                    text-gray-900 leading-snug cursor-pointer">
-                                            {item.name.length > 15
-                                                ? item.name.slice(0, 15) + "...."
-                                                : item.name}
-                                        </h1>
+                        {/* image */}
+                        <div className="flex flex-col items-center w-full lg:w-[160px]">
+                            <img
+                                src={item.image}
+                                className="h-[100px] lg:h-[140px] object-contain rounded-xl transition-transform duration-300 hover:scale-105"
+                            />
 
-                                        {/* Tooltip showing full name instantly on hover */}
-                                        {item.name.length > 15 && (
-                                            <div className="absolute left-0 top-full mt-1 z-50
-                                                            hidden group-hover:block
-                                                            max-w-xs rounded-lg bg-gray-900
-                                                            px-3 py-1.5 text-sm text-white shadow-lg">
-                                                {item.name}
-                                            </div>
-                                        )}
-                                    </div>
+                            {item.labelledPrice > item.price && (
+                                <h2 className="text-sm text-gray-400 line-through mt-2 lg:hidden">
+                                    LKR {item.labelledPrice.toFixed(2)}
+                                </h2>
+                            )}
 
-                                    {/* Original price (only if discounted) */}
-                                    {item.labelledPrice > item.price && (
-                                        <h2 className="text-[14px] text-gray-400 line-through">
-                                            LKR {item.labelledPrice.toFixed(2)}
-                                        </h2>
-                                    )}
+                            <h2 className="text-xl font-bold text-emerald-600 lg:hidden">
+                                LKR {item.price.toFixed(2)}
+                            </h2>
+                        </div>
 
-                                    {/* Current price */}
-                                    <h2 className="text-[20px] md:text-[22px] font-bold
-                                                text-emerald-600 tracking-tight">
-                                        LKR {item.price.toFixed(2)}
-                                    </h2>
+                        {/* mobile qty */}
+                        <div className="lg:hidden w-full flex justify-center mt-2">
+                            <div className="flex items-center gap-4 bg-white rounded-xl px-4 py-2 shadow-md">
+                                <BsChevronUp
+                                    onClick={() => {
+                                        addToCart(item, 1)
+                                        setCart(getCart())
+                                    }}
+                                    className="text-2xl cursor-pointer hover:text-accent"
+                                />
+                                <span className="text-lg font-semibold">{item.quantity}</span>
+                                <BsChevronUp
+                                    onClick={() => {
+                                        addToCart(item, -1)
+                                        setCart(getCart())
+                                    }}
+                                    className="rotate-180 text-2xl cursor-pointer hover:text-accent"
+                                />
+                            </div>
+                        </div>
 
-                                    {/* ProductID */}
-                                    <p className="text-[14px] text-gray-500">
-                                        ProductID:
-                                        <span className="ml-1 font-semibold text-gray-800">
-                                            {item.productID}
-                                        </span></p>
-                                    </div>
+                        {/* ===== DESKTOP (lg) MODERNIZED ===== */}
+                        <div className="hidden lg:flex flex-1 items-center justify-between bg-white/70 backdrop-blur-md rounded-xl px-6 py-4 shadow-inner">
 
-                                    {/* Counter for the quantity */}
-                                    <div className="h-full flex flex-row items-center gap-4">
-                                        <div className="h-full flex flex-col justify-center items-center">
-                                            <BsChevronUp 
-                                                onClick={
-                                                    () => {
-                                                        addToCart(item, 1);
-                                                        const newCart = getCart();
-                                                        setCart(newCart);
-                                                    }
-                                                }
-                                                className="text-2xl cursor-pointer hover:text-accent transition"/>
-                                                <span className="text-lg">{item.quantity}</span>
-                                            <BsChevronUp 
-                                                onClick={
-                                                    () => {
-                                                        addToCart(item, -1);
-                                                        const newCart = getCart();
-                                                        setCart(newCart);
-                                                    }
-                                                }
-                                                className="rotate-180 text-2xl cursor-pointer hover:text-accent transition"/>
-                                        </div>    
-                                    </div>
+                            {/* details */}
+                            <div className="flex flex-col gap-1 max-w-[280px]">
+                                <h1 className="text-lg font-semibold text-gray-900 truncate">
+                                    {item.name}
+                                </h1>
 
-                                    <div>
-                                        <span className="pr-4 text-lg font-semibold ">LKR: {(item.price*item.quantity).toFixed(2)}</span>
-                                    </div>
-                            </div>                          
-                        );
-                    }
-                )
+                                <p className="text-xs text-gray-500">
+                                    Product ID: <span className="font-medium text-gray-700">{item.productID}</span>
+                                </p>
+
+                                {item.labelledPrice > item.price && (
+                                    <span className="text-sm text-gray-400 line-through">
+                                        LKR {item.labelledPrice.toFixed(2)}
+                                    </span>
+                                )}
+
+                                <span className="text-xl font-bold text-emerald-600">
+                                    LKR {item.price.toFixed(2)}
+                                </span>
+                            </div>
+
+                            {/* qty */}
+                            <div className="flex items-center gap-4 bg-white rounded-xl px-4 py-2 shadow-md">
+                                <BsChevronUp
+                                    onClick={() => {
+                                        addToCart(item, 1)
+                                        setCart(getCart())
+                                    }}
+                                    className="text-xl cursor-pointer hover:text-accent"
+                                />
+                                <span className="text-lg font-semibold">{item.quantity}</span>
+                                <BsChevronUp
+                                    onClick={() => {
+                                        addToCart(item, -1)
+                                        setCart(getCart())
+                                    }}
+                                    className="rotate-180 text-xl cursor-pointer hover:text-accent"
+                                />
+                            </div>
+
+                            {/* subtotal */}
+                            <div className="text-right">
+                                <span className="text-sm text-gray-500">Subtotal</span>
+                                <p className="text-lg font-bold text-gray-900">
+                                    LKR {(item.price * item.quantity).toFixed(2)}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))
             }
-           <div className="w-full md:w-[50%] h-[150px] my-2 flex flex-col md:flex-row items-center justify-between
-                bg-white rounded-2xl shadow-lg border border-gray-100 p-4 gap-4">
-                
-                {/* Continue Shopping Button */}
-                <Link 
-                    to="/products" 
-                    className="px-6 py-3 rounded-xl bg-accent text-white font-semibold 
-                            hover:bg-white hover:text-accent transition-all duration-300 shadow-md hover:shadow-lg"
+
+            {/* checkout */}
+            <div className="w-full md:w-[55%] my-3 flex flex-col gap-4
+                            bg-white rounded-2xl shadow-lg border border-gray-100 p-4 items-center">
+
+                <Link
+                    to="/products"
+                    className="px-6 py-3 rounded-xl bg-accent text-white font-semibold
+                               hover:bg-white hover:text-accent transition-all shadow-md w-[50%] text-center"
                 >
                     Continue Shopping
                 </Link>
 
-                <Link 
-                    to="/checkOut" 
-                    className="px-6 py-3 rounded-xl bg-white text-accent border-2 font-semibold 
-                        hover:bg-emerald-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg ml-[-180px]"
-                    state={cart} // cart eke details aran ynwanwa   
+                <Link
+                    to="/checkOut"
+                    state={cart}
+                    className="px-6 py-3 rounded-xl bg-white text-accent border-2 font-semibold
+                               hover:bg-emerald-600 hover:text-white transition-all shadow-md w-[50%] text-center"
                 >
                     Check Out
                 </Link>
 
-                {/* Total Price */}
-                <span className="text-lg md:text-xl font-bold text-gray-900 text-right w-full md:w-[150px]">
-                    LKR: {getTotalCart()}
-                </span>    
-
+                <span className="text-xl font-bold text-gray-900 text-center">
+                   Total: LKR {getTotalCart()}
+                </span>
             </div>
-
         </div>
     )
 }
