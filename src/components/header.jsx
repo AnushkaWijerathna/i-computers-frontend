@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BiShoppingBag } from "react-icons/bi";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { Link } from "react-router-dom";
+import UserData from "./userData";
 
 export default function Header() {
   const [sidebarOpen, setSideBarOpen] = useState(false);
@@ -50,6 +51,11 @@ export default function Header() {
         </Link>
       </div>
 
+      {/*Login and Register buttons and user Name */}
+      <div className="w-[250px] h-full absolute right-12 top-1/2 -translate-y-1/2 mr-8 hidden lg:flex items-center">
+        <UserData />
+      </div>
+
       {/* Cart icon - elevated, better touch target, subtle hover animation */}
       <Link
         to="/cart"
@@ -59,7 +65,7 @@ export default function Header() {
       </Link>
       {sidebarOpen && (
         <div className="fixed inset-0 bg-black/50 z-9999 lg:hidden">
-          <div className="fixed top-0 left-0 w-[300px] h-screen border-white border-2 shadow-2xl z-10000">
+          <div className="fixed top-0 left-0 w-[300px] h-screen border-white border-0 shadow-2xl z-10000">
             {/* SLIDING PANEL */}
             <div className="absolute inset-0 bg-white transform translate-x-0 transition-transform duration-300 flex flex-col">
               {/* HEADER */}
@@ -79,7 +85,7 @@ export default function Header() {
               <div className="w-full h-full text-xl text-secondary flex flex-col justify-start items-start gap-4">
                 <a
                   href="/"
-                  className="w-full text-secondary transition-all duration-300 hover:text-accent hover:translate-x-2"
+                  className="w-full text-secondary transition-all duration-300 hover:text-accent hover:translate-x-2 mt-4"
                 >
                   Home
                 </a>
@@ -104,6 +110,9 @@ export default function Header() {
                 >
                   Contact Us
                 </a>
+                <div className="w-full flex items-center bg-accent p-2 mt-4 ml-0.5 rounded-full">
+                  <UserData />
+                </div>
               </div>
             </div>
           </div>
