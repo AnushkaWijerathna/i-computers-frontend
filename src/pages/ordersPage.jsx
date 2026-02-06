@@ -1,9 +1,10 @@
-//adminProductPage ekama use krnna products wenuwat orders danna
+//admin orders page ekma aran modify krnna
+
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ViewOrderInfo from "../../components/viewOrderInfo";
+import ViewOrderInfoCustomer from "../components/viewOrderInfoCustomer";
 
-export default function AdminOrdersPage() {
+export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
@@ -26,9 +27,9 @@ export default function AdminOrdersPage() {
   }, [loaded]);
 
   return (
-    <div className=" w-full h-screen flex justify-center p-10 relative bg-primary overflow-hidden">
-      <div className=" w-full max-w-[1300px] bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full">
-        <div className="w-full overflow-x-auto overflow-y-auto flex-1">
+    <div className=" w-full flex justify-center p-10 relative bg-primary overflow-hidden">
+      <div className=" w-full max-w-[1300px] bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+        <div className="w-full max-h-[70vh] overflow-x-auto overflow-y-auto">
           {loaded ? (
             <table className="min-w-full divide-y divide-gray-200 ">
               <thead className="bg-accent">
@@ -88,7 +89,7 @@ export default function AdminOrdersPage() {
                         LKR: {order.total.toFixed(2)}
                       </td>
                       <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-secondary">
-                        <ViewOrderInfo order={order} />
+                        <ViewOrderInfoCustomer order={order} />
                       </td>
                     </tr>
                   );

@@ -12,6 +12,7 @@ import AdminUpdateProductPage from "./admin/adminUpdateProductPage";
 import AdminOrdersPage from "./admin/adminOrdersPage";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import AdminUsersPage from "./admin/adminUsersPage";
 
 export default function AdminPage() {
   const [user, setUser] = useState(null);
@@ -97,10 +98,7 @@ export default function AdminPage() {
                 path="/update-product"
                 element={<AdminUpdateProductPage />}
               />
-              <Route
-                path="/users"
-                element={user ? <h1>Users</h1> : <h1>Loading...</h1>}
-              />
+              <Route path="/users" element={<AdminUsersPage />} />
               <Route path="/reviews" element={<h1>Reviews</h1>} />
             </Routes>
           </div>

@@ -168,7 +168,7 @@ export default function LoginPage() {
           <p className="text-white/80 mb-2 mt-4">
             Forgot Password?
             <span className="text-golden font-semibold hover:underline cursor-pointer">
-              <Link to="/forgot-password">Reset Password</Link>
+              <Link to="/forgot-password"> Reset here</Link>
             </span>
           </p>
         </div>

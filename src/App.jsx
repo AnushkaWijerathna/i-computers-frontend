@@ -8,6 +8,7 @@ import AdminPage from "./pages/adminPage";
 import { Toaster } from "react-hot-toast";
 import TestPage from "./pages/test";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import ForgetPasswordPage from "./pages/forgetPasswordPage";
 
 //448822440174-al792d7stih6m2de06dj1nc8mg0ggjl7.apps.googleusercontent.com //login with google API clientID
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/admin/*" element={<AdminPage />} />
             <Route path="/test" element={<TestPage />} />
+            <Route path="/forgot-password" element={<ForgetPasswordPage />} />
           </Routes>
         </div>
       </BrowserRouter>

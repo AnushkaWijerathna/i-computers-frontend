@@ -33,6 +33,7 @@ export default function UserData() {
         <div className="w-[150px] flex flex-row items-center gap-3">
           <img
             src={user.Image}
+            referrerPolicy="no-referrer" //google login weddi image pennan nathi ek nisa mehema dnwa
             onError={(e) => (e.currentTarget.src = "/default.png")}
             className="w-[80px] h-[80px] object-cover rounded-full"
           />

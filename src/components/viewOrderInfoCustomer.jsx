@@ -1,17 +1,15 @@
 //row ekk click krma order ekta adala popup menu ekk enna one
-import axios from "axios";
-import React, { useState } from "react";
-import toast from "react-hot-toast";
+
+import { useState } from "react";
+
 import Modal from "react-modal";
 
 // Set this once in your app (e.g. in root App component)
 // Modal.setAppElement('#root')
 
-export default function ViewOrderInfo(props) {
+export default function ViewOrderInfoCustomer(props) {
   const order = props.order;
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [notes, setNotes] = useState(order.notes);
-  const [status, setStatus] = useState(order.status);
 
   if (!order) {
     return (
@@ -63,62 +61,27 @@ export default function ViewOrderInfo(props) {
               Placed on {formatDate(order.date)}
             </p>
           </div>
-
-          <div className="flex items-center gap-3">
-            {(order.notes != notes || order.status != status) && (
-              <button
-                className="px-3 py-1 rounded-lg bg-blue-300 hover:bg-blue-800 text-accent hover:text-white  text-sm"
-                onClick={() => {
-                  const token = localStorage.getItem("token");
-                  axios
-                    .put(
-                      import.meta.env.VITE_BACKEND_URL +
-                        `/orders/${order.orderID}`,
-                      {
-                        status: status,
-                        notes: notes,
-                      },
-                      {
-                        headers: {
-                          Authorization: `Bearer ${token}`,
-                        },
-                      },
-                    )
-                    .then(() => {
-                      toast.success("Updated Succesfully");
-                      setIsOpen(false);
-                      setTimeout(() => {
-                        window.location.reload();
-                      }, 800); // 0.8s is enough to see toast
-                    })
-                    .catch(() => {
-                      toast.error("Error updating");
-                    });
-                }}
-              >
-                Save Changes
-              </button>
-            )}
-            <select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              className={`px-3 py-1 rounded-full text-sm font-medium border cursor-pointer
+        </div>
+        <div className="flex items-end justify-end gap-4 ">
+          <select
+            value={status}
+            disabled
+            className={`px-3 py-1 rounded-full text-sm font-medium border cursor-pointer
               ${statusClasses(status)}`}
-            >
-              <option value="pending">Pending</option>
-              <option value="processing">Processing</option>
-              <option value="shipped">Shipped</option>
-              <option value="delivered">Delivered</option>
-              <option value="cancelled">Cancelled</option>
-            </select>
-            <button
-              className="px-3 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm"
-              onClick={() => window.print()}
-              title="Print order"
-            >
-              Print
-            </button>
-          </div>
+          >
+            <option value="pending">Pending</option>
+            <option value="processing">Processing</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <button
+            className="px-3 py-1 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm"
+            onClick={() => window.print()}
+            title="Print order"
+          >
+            Print
+          </button>
         </div>
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -147,15 +110,9 @@ export default function ViewOrderInfo(props) {
             </h3>
 
             <textarea
-              value={notes}
-              onChange={(e) => {
-                if (e.target.value == "") {
-                  setNotes(null);
-                } else {
-                  setNotes(e.target.value);
-                }
-              }}
-              placeholder="Add notes"
+              value={order.notes}
+              disabled
+              placeholder="Additional notes"
               className="mt-2 w-full min-h-[90px] rounded-lg border border-gray-300 p-2 text-sm
                                     focus:outline-none focus:ring-2 focus:ring-accent resize-none"
             />
@@ -178,7 +135,7 @@ export default function ViewOrderInfo(props) {
                       <img
                         src={it.image}
                         alt={it.name}
-                        className="w-16 h-16 object-contain rounded-lg shrink-0"
+                        className="w-16 h-16 object-contain rounded-lg flex-shrink-0"
                       />
 
                       <div className="flex-1 min-w-0">
