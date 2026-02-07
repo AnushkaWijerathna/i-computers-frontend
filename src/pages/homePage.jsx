@@ -7,6 +7,7 @@ import CartPage from "./cart";
 import CheckOutPage from "./checkOut";
 import OrdersPage from "./ordersPage";
 import HomeContents from "./homeContents";
+import AboutUs from "./aboutUs";
 //Admin, login, register URLs hara one ekk enne home page URL ekata
 export default function HomePage() {
   return (
@@ -19,7 +20,7 @@ export default function HomePage() {
           <Route path="/overview/:productID" element={<ProductOverview />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkOut" element={<CheckOutPage />} />
-          <Route path="/about" element={<h1>About Us Page</h1>} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<h1>Contact Us Page</h1>} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="*" element={<h1>404 - Page Not Found</h1>} />
