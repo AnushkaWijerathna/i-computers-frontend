@@ -52,7 +52,7 @@ export default function AdminPage() {
           {/* Admin Page sidepanel; header eka, links tika*/}
           <div className="w-75 h-full bg-accent">
             <div className="w-full h-[100px] text-primary flex items-center">
-              <img src="/logo.png" className="h-full" alt="logo" />
+              <img src="/Logo1.png" className="h-full mt-1.5" alt="logo" />
               <h1>Admin</h1>
             </div>
 

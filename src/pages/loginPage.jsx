@@ -105,7 +105,7 @@ export default function LoginPage() {
       {/* Left side, "object-cover" image thibba whdta thiyenwa wens wen na*/}
       <div className="w-[50%] h-full flex flex-col p-[60px] justify-center items-center relative z-10">
         <img
-          src="/logo.png"
+          src="/Logo1.png"
           alt="logo"
           className="w-[200px] h-[200px] object-cover drop-shadow-[0_0_25px_rgba(255,215,0,0.6)]"
         />

@@ -18,7 +18,7 @@ export default function Header() {
       />
       {/* Logo with better sizing & alignment */}
       <img
-        src="/logo.png"
+        src="/Logo1.png"
         className="h-[70%] object-contain select-none pl-2"
         alt="logo"
       />
@@ -71,7 +71,7 @@ export default function Header() {
               {/* HEADER */}
               <div className="w-full h-[100px] bg-accent flex justify-center items-center">
                 <img
-                  src="/logo.png"
+                  src="/Logo1.png"
                   className="h-[70%] object-contain select-none"
                   alt="logo"
                 />

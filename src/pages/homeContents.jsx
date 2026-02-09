@@ -205,7 +205,7 @@ export default function HomeContents() {
 
           <div className="text-center">
             <div className="w-44 h-44 mx-auto rounded-full bg-white/5 flex items-center justify-center">
-              <img src="logo.png" alt="logo" />
+              <img src="Logo1.png" alt="logo" />
             </div>
             <p className="text-white/80 mt-4">
               Visit our store or browse online
